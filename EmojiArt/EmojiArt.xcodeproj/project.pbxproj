@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		925D956C274A9C6300CE76E9 /* PaletteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925D956B274A9C6300CE76E9 /* PaletteStore.swift */; };
+		925D956D274A9C6300CE76E9 /* PaletteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925D956B274A9C6300CE76E9 /* PaletteStore.swift */; };
 		929242C22742C3EE0082EEBC /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929242C12742C3EE0082EEBC /* Tests_iOS.swift */; };
 		929242C42742C3EE0082EEBC /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929242C32742C3EE0082EEBC /* Tests_iOSLaunchTests.swift */; };
 		929242CE2742C3EE0082EEBC /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929242CD2742C3EE0082EEBC /* Tests_macOS.swift */; };
@@ -47,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		925D956B274A9C6300CE76E9 /* PaletteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteStore.swift; sourceTree = "<group>"; };
 		929242A92742C3ED0082EEBC /* EmojiArtApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtApp.swift; sourceTree = "<group>"; };
 		929242AA2742C3ED0082EEBC /* EmojiArtDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtDocumentView.swift; sourceTree = "<group>"; };
 		929242AB2742C3EE0082EEBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -118,6 +121,7 @@
 				929242E52742C42D0082EEBC /* EmojiArtModel.swift */,
 				929242E82742C8490082EEBC /* EmojiArtModel.Background.swift */,
 				92F6AB67274404AC00E1F8AA /* EmojiArtDocument.swift */,
+				925D956B274A9C6300CE76E9 /* PaletteStore.swift */,
 				92F6AB6A2744068D00E1F8AA /* UtilityExtensions.swift */,
 				92F6AB6B2744068D00E1F8AA /* UtilityViews.swift */,
 			);
@@ -320,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92F6AB6E2744068D00E1F8AA /* UtilityViews.swift in Sources */,
+				925D956C274A9C6300CE76E9 /* PaletteStore.swift in Sources */,
 				929242D32742C3EE0082EEBC /* EmojiArtDocumentView.swift in Sources */,
 				929242D12742C3EE0082EEBC /* EmojiArtApp.swift in Sources */,
 				92F6AB6C2744068D00E1F8AA /* UtilityExtensions.swift in Sources */,
@@ -334,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92F6AB6F2744068D00E1F8AA /* UtilityViews.swift in Sources */,
+				925D956D274A9C6300CE76E9 /* PaletteStore.swift in Sources */,
 				929242D42742C3EE0082EEBC /* EmojiArtDocumentView.swift in Sources */,
 				929242D22742C3EE0082EEBC /* EmojiArtApp.swift in Sources */,
 				92F6AB6D2744068D00E1F8AA /* UtilityExtensions.swift in Sources */,
