@@ -14,7 +14,9 @@ struct PaletteChooser: View {
     
     @EnvironmentObject var store: PaletteStore
     
-    @State private var chosenPaletteIndex = 0
+    // SceneStorage saves the variable per scene. Next time you enter the scene the value will be recovered automantically
+    @SceneStorage("PaletteChooser.chosenPaletteIndex")
+    private var chosenPaletteIndex = 0
     
     var body: some View {
         HStack {

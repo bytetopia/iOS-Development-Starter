@@ -8,14 +8,13 @@
 import SwiftUI
 
 @main
-struct EmojiArtApp: App {
+struct EmojiArtApp: App {// ReferenceFileDocument conforms to ObservableObject
     
-    @StateObject var document = EmojiArtDocument()
     @StateObject var paletteStore = PaletteStore(named: "default")
      
     var body: some Scene {
-        WindowGroup {
-            EmojiArtDocumentView(document: document)
+        DocumentGroup(newDocument: { EmojiArtDocument() }) { config in
+            EmojiArtDocumentView(document: config.document)
                 .environmentObject(paletteStore)  // inject the environment object to be passed throught views and sub views
         }
     }

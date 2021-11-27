@@ -11,7 +11,10 @@ struct EmojiArtDocumentView: View {
     
     @ObservedObject var document: EmojiArtDocument
     
-    let defaultEmojiFontSize: CGFloat = 40
+    @Environment(\.undoManager) var undoManager
+    
+    // makes this value scaling with system font size settings
+    @ScaledMetric var defaultEmojiFontSize: CGFloat = 40
     
     var body: some View {
         VStack(spacing: 0) {
@@ -57,8 +60,21 @@ struct EmojiArtDocumentView: View {
                     break
                 }
             }
+            .onReceive(document.$backgroundImage) { image in  // listen to the backgroundImage publisher
+                if autoZoom {
+                    zoomToFit(image, in: geometry.size)  // when change to a new background, zoom canvas to fit
+                }
+            }
+            .toolbar {
+                UndoButton(
+                    undo: undoManager?.optionalUndoMenuItemTitle,
+                    redo: undoManager?.optionalRedoMenuItemTitle
+                )
+            }
         }
     }
+    
+    @State private var autoZoom = false
     
     @State private var alertToShow: IdentifiableAlert?  // self defined alert with id in UtilityViews.swift
     
@@ -76,13 +92,15 @@ struct EmojiArtDocumentView: View {
         // loadObjects is implemented in UtilityExtensions
         // if provider has an URL, then call the func
         var found = providers.loadObjects(ofType: URL.self) { url in
-            document.setBackground(EmojiArtModel.Background.url(url.imageURL))
+            autoZoom = true
+            document.setBackground(EmojiArtModel.Background.url(url.imageURL), undoManager: undoManager)
         }
         if !found {
             // if provider has image, then call the func
             found = providers.loadObjects(ofType: UIImage.self) { image in
                 if let data = image.jpegData(compressionQuality: 1.0) {
-                    document.setBackground(.imageData(data))
+                    autoZoom = true
+                    document.setBackground(.imageData(data), undoManager: undoManager)
                 }
             }
         }
@@ -93,7 +111,8 @@ struct EmojiArtDocumentView: View {
                     document.addEmoji(
                         String(emoji),
                         at: convertToEmojiCoordinates(location, in: geometry),
-                        size: defaultEmojiFontSize / zoomScale
+                        size: defaultEmojiFontSize / zoomScale,
+                        undoManager: undoManager
                     )
                 }
             }
@@ -105,7 +124,8 @@ struct EmojiArtDocumentView: View {
         CGFloat(emoji.size)
     }
     
-    @State private var steadyStatePanOffset: CGSize = CGSize.zero
+    @SceneStorage("EmojiArtDocumentView.steadyStatePanOffset")
+    private var steadyStatePanOffset: CGSize = CGSize.zero
     @GestureState private var gesturePanOffset: CGSize = CGSize.zero
     
     private var panOffset: CGSize {
@@ -123,7 +143,9 @@ struct EmojiArtDocumentView: View {
     }
     
     // zoom scale when everything is steady
-    @State private var steadyStateZoomScale: CGFloat = 1
+    // CGFloat CGSize are extened in UtilityExtension to be RawRepresentable so that they can be saved to SceneStorage
+    @SceneStorage("EmojiArtDocumentView.steadyStateZoomScale")
+    private var steadyStateZoomScale: CGFloat = 1
     // marking the scale of zoom gesture
     @GestureState private var gestureZoomScale: CGFloat = 1
     
