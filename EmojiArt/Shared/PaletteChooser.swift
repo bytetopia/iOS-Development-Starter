@@ -35,6 +35,7 @@ struct PaletteChooser: View {
             Image(systemName: "paintpalette")
         }
         .font(emojiFont)
+        .paletteControlButtonStyle()
         .contextMenu { contextMenu }
     }
     
@@ -52,9 +53,11 @@ struct PaletteChooser: View {
         AnimatedActionButton(title: "Delete", systemImage: "minus.circle") {
             chosenPaletteIndex = store.removePalette(at: chosenPaletteIndex)
         }
+        #if os(iOS)
         AnimatedActionButton(title: "Manage", systemImage: "slider.vertical.3") {
             managing = true
         }
+        #endif
         gotoMenu
     }
     
@@ -82,6 +85,8 @@ struct PaletteChooser: View {
         .transition(rollTransition)
         .popover(item: $paletteToEdit) { palette in  // popover option 1: if paletteToEdit is not nil, then show the popoer
             PaletteEditor(palette: $store.palettes[palette])
+                .popoverPadding()
+                .wrappedInNavigationViewToMakeDismissable { paletteToEdit = nil }
         }
         .sheet(isPresented: $managing) {
             PaletteManager()
