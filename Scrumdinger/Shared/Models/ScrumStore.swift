@@ -19,6 +19,20 @@ class ScrumStore: ObservableObject {
             .appendingPathComponent("scrums.data")
     }
     
+    // the async interface of the legacy load(completion:_) func
+    static func load() async throws -> [DailyScrum] {
+        try await withCheckedThrowingContinuation { continuation in
+            load { result in
+                switch result {
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                case .success(let scrums):
+                    continuation.resume(returning: scrums)
+                }
+            }
+        }
+    }
+    
     static func load(completion: @escaping (Result<[DailyScrum], Error>)->Void) {
         DispatchQueue.global(qos: .background).async {
             do {
@@ -36,6 +50,21 @@ class ScrumStore: ObservableObject {
             } catch {
                 DispatchQueue.main.async {
                     completion(.failure(error))
+                }
+            }
+        }
+    }
+    
+    // the async version of the legacy save(scrums, completion) func
+    @discardableResult
+    static func save(scrums: [DailyScrum]) async throws -> Int {
+        try await withCheckedThrowingContinuation { continuation in
+            save(scrums: scrums) { result in
+                switch result {
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                case .success(let scrumsSaved):
+                    continuation.resume(returning: scrumsSaved)
                 }
             }
         }
