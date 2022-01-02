@@ -2,9 +2,10 @@
 
 ## Training Courses
 
-1) CS193P Stanford University
+### 1) CS193P Stanford University
 
-Website and materials: https://cs193p.stanford.edu/
+Website and materials: 
+- https://cs193p.stanford.edu/
 
 Video recordings: 
 - [watch on Youtube] https://www.youtube.com/watch?v=bqu6BquVi2M&ab_channel=Stanford
@@ -14,19 +15,40 @@ Projects:
 - Memorize
 - EmojiArt
 
-2) Apple Official iOS App Dev Tutorial
+### 2) Apple Official - iOS App Dev Tutorial
 
-Website and materials: https://developer.apple.com/tutorials/app-dev-training
+Website and materials: 
+- https://developer.apple.com/tutorials/app-dev-training
 
 Projects:
 - Scrumdinger
 
-> Strongly recommend these Apple offcial training tutorials since they're using latest features in Swift and SwiftUI and you can learn some "standard" iOS developing habits (and improve the sense to make your apps with better accessibility support.)
+### 3) Apple Official - SwiftUI Tutorial
 
-3) Apple Official SwiftUI Tutorial
-
-Website and materials: https://developer.apple.com/tutorials/swiftui
+Website and materials: 
+- https://developer.apple.com/tutorials/swiftui
 
 Projects:
 - Landmarks
 
+### 4) Apple Official - Sample Apps Tutorials
+Website and materials:
+- https://developer.apple.com/tutorials/sample-apps
+
+Projects: (These are Swift Playground files, but can also be opened by Xcode 13.2 and later)
+- Navigation
+    - About me
+    - Choose your own story
+    - Date planner
+- Presenting content
+    - Organizing with grids
+    - Editing grids
+    - Image gallery
+- Retrieving content from server 
+    - Meme creator
+- Responding to user input
+    - Bubble level
+    - Seismometer
+    - Recognizing gestures
+
+ 
